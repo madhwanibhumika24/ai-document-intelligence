@@ -7,5 +7,7 @@ class Settings(BaseSettings):
 
     UPLOAD_DIRECTORY: str = "app/storage/uploads"
 
+    GENERATED_DIRECTORY: str = "app/storage/generated"
+
 
 settings = Settings()

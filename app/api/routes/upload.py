@@ -1,6 +1,6 @@
 from fastapi import APIRouter, File, UploadFile, status
 
-from app.schemas.upload import UploadResponse
+from app.schemas.upload import MultipleUploadResponse
 from app.services.upload_service import UploadService
 
 router = APIRouter(
@@ -13,8 +13,10 @@ upload_service = UploadService()
 
 @router.post(
     "/upload",
-    response_model=UploadResponse,
+    response_model=MultipleUploadResponse,
     status_code=status.HTTP_201_CREATED,
 )
-async def upload_document(file: UploadFile = File(...)):
-    return await upload_service.save(file)
+async def upload_documents(
+    files: list[UploadFile] = File(...)
+):
+    return await upload_service.save(files)

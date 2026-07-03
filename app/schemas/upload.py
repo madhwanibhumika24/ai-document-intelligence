@@ -8,3 +8,7 @@ class UploadResponse(BaseModel):
     content_type: str
     size: int
     message: str
+
+
+class MultipleUploadResponse(BaseModel):
+    documents: list[UploadResponse]
